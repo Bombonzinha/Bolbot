@@ -36,7 +36,49 @@ async function user(interaction) {
         return null;
     }
 }
+async function role(interaction) {
+    try {
+        const { guild } = await checkers.checkPermissionsAndFetchMembers(interaction);
+        if (!guild) return; 
+
+        const roles = guild.roles.cache;
+        if (!roles) {
+            console.error('No se pudieron obtener los roles del servidor.');
+            return;
+        }
+
+        // Agarro a todos los roles
+        let selectedRoles = roles;
+        // Si la opcion es verdadera, no excluye a los roles de bots
+        const botOption = interaction.options.get('bots');
+        if (botOption !== true) { // SI NO SE ELIGE LA OPCIÓN DE LOS BOTS SE FILTRAN LOS ROLES BOTS
+            selectedRoles = roles.filter(role => !role.managed);
+        }
+        // Obtengo la cantidad de iteraciones elegidas en la opción
+        let quantity = await functions.getQuantity(interaction);
+
+        if (quantity === 1){
+            // Mete los roles en un array y elije uno random 
+            const randomRole = random.generateRandomRole(selectedRoles);
+            interaction.reply({ content: `${randomRole}` });
+        } else {
+            let randomRoles = []; // Array de roles aleatorios
+            for (let i = 0; i < quantity; i++) {
+                // Meto un rol random al array con el arroba de mención
+                const randomRole = random.generateRandomRole(selectedRoles);
+                randomRoles.push(`${randomRole}`);
+            }
+            // Une las menciones en una sola cadena
+            let mentionString = randomRoles.join(' ');
+            interaction.reply({ content: mentionString });
+        }
+    } catch (error) {
+        console.error('Error al seleccionar un rol aleatorio:', error);
+        return null;
+    }
+}
 
 module.exports = {
-    user
+    user,
+    role
 };

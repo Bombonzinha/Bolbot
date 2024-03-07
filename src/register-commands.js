@@ -65,7 +65,35 @@ const commands = [
                 ]
             }
         ]
-    }
+    },
+    {
+        name: 'randrole',
+        description: 'Generate random ROLE',
+        options: [
+            {
+                name: 'quantity',
+                description: 'Number of users',
+                type: ApplicationCommandOptionType.Number,
+                required: false
+            },
+            {
+                name: 'bots',
+                description: 'Include Bots',
+                type: ApplicationCommandOptionType.Boolean,
+                required: false,
+                choices: [
+                    {
+                        name: 'Include Bots',
+                        value: true
+                    },
+                    {
+                        name: 'Exclude Bots',
+                        value: false
+                    }
+                ]
+            }
+        ]
+    },
 ]
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);

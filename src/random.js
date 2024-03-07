@@ -15,9 +15,21 @@ function generateRandomColor() {
 }
 
 function generateRandomUser(members){
+    // Hago un array de los miembros
     const selectedMembersArray = Array.from(members.values());
+    // Random numero de la cantdiad de miembros elegidpos
     const randomIndex = Math.floor(Math.random() * selectedMembersArray.length);
+    // Elijo uno random de esos
     const randomMember = selectedMembersArray[randomIndex];
     return randomMember;
 }
-module.exports = { generateRandomName, generateRandomColor, generateRandomUser };
+function generateRandomRole(roles){
+    // Hago un array de los roles
+    const selectedRolesArray = Array.from(roles.values());
+    // Random numero de la cantdiad de roles elegidpos
+    const randomIndex = Math.floor(Math.random() * selectedRolesArray.length);
+    // Elijo uno random de esos
+    const randomRole = selectedRolesArray[randomIndex];
+    return randomRole;
+}
+module.exports = { generateRandomName, generateRandomColor, generateRandomUser, generateRandomRole };
