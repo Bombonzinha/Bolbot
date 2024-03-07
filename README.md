@@ -1,0 +1,6 @@
+- Actions
+    - Shufflers
+    - Generators
+        - Checkers
+        - Random
+        - Functions

@@ -14,4 +14,10 @@ function generateRandomColor() {
     return '#' + '0'.repeat(6 - color.length) + color;
 }
 
-module.exports = { generateRandomName, generateRandomColor };
+function generateRandomUser(members){
+    const selectedMembersArray = Array.from(members.values());
+    const randomIndex = Math.floor(Math.random() * selectedMembersArray.length);
+    const randomMember = selectedMembersArray[randomIndex];
+    return randomMember;
+}
+module.exports = { generateRandomName, generateRandomColor, generateRandomUser };

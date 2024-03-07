@@ -1,7 +1,8 @@
 require('dotenv').config();
 const { Client, IntentsBitField, PermissionsBitField } = require('discord.js');
-const random = require('./random.js');
 const actions = require('./actions.js');
+const shuffleCommands = ['shuffle', 'nameshuffle', 'colourshuffle'];
+const randomCommands = ['random', 'randuser', 'randrole', 'randnumber', 'randname', 'randcolour', 'randchar', 'randtext'];
 
 const client = new Client({
     intents: [
@@ -18,11 +19,14 @@ client.on('ready', (c)=> {
 
 client.on('interactionCreate', async (interaction) =>{
     if (!interaction.isChatInputCommand) return;
-    const shuffleCommands = ['shuffle', 'nameshuffle', 'colourshuffle'];
     if (shuffleCommands.includes(interaction.commandName)) {
         interaction.reply({ content: interaction.commandName.toUpperCase() + '!'});
         console.log('------------SHUFFLING------------');
-        actions.shuffle(interaction);
+        await actions.selectShuffle(interaction);
+    }
+    if (randomCommands.includes(interaction.commandName)) {
+        console.log('------------RANDOM!------------');
+        await actions.selectRandom(interaction);
     }
 });
 

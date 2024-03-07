@@ -37,6 +37,34 @@ const commands = [
                 required: false
             }
         ]
+    },
+    {
+        name: 'randuser',
+        description: 'Generate random USER',
+        options: [
+            {
+                name: 'quantity',
+                description: 'Number of users',
+                type: ApplicationCommandOptionType.Number,
+                required: false
+            },
+            {
+                name: 'bots',
+                description: 'Include Bots',
+                type: ApplicationCommandOptionType.Boolean,
+                required: false,
+                choices: [
+                    {
+                        name: 'Include Bots',
+                        value: true
+                    },
+                    {
+                        name: 'Exclude Bots',
+                        value: false
+                    }
+                ]
+            }
+        ]
     }
 ]
 
