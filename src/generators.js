@@ -77,8 +77,30 @@ async function role(interaction) {
         return null;
     }
 }
+async function number(interaction) {
+    try {
+        const { min, max } = await functions.getMinMax(interaction);
+        // Obtengo la cantidad de iteraciones elegidas en la opción
+        let quantity = await functions.getQuantity(interaction);
+        if (quantity === 1){
+            interaction.reply({ content: `${random.generateRandomNumber(min, max)}` });
+        } else {
+            let randomNumbers = [];
+            for (let i = 0; i < quantity; i++) {
+                // Meto un numero random al array
+                randomNumbers.push(`${random.generateRandomNumber(min, max)}`);
+            }
+            let replyString = randomNumbers.join(' - ');
+            interaction.reply({ content: replyString });
+        }
+    } catch (error) {
+        console.error('Error al seleccionar un rol aleatorio:', error);
+        return null;
+    }
+}
 
 module.exports = {
     user,
-    role
+    role,
+    number
 };

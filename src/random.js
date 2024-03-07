@@ -1,7 +1,7 @@
-function generateRandomName() {
+function generateRandomNick(min, max) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const max=20;
-    const nameLength = Math.floor(Math.random() * max) + 1; // Random length between 1 and 10 characters
+    if (max > 32) max=32; // ES EL MAXIMO QUE PERMITE DISCORD
+    const nameLength = generateRandomNumber(min, max); // Random length between 1 and 10 characters
     let randomName = '';
     for (let i = 0; i < nameLength; i++) {
         randomName += characters.charAt(Math.floor(Math.random() * characters.length));
@@ -12,6 +12,10 @@ function generateRandomName() {
 function generateRandomColor() {
     const color = Math.floor(Math.random() * 16777215).toString(16);
     return '#' + '0'.repeat(6 - color.length) + color;
+}
+
+function generateRandomNumber(min, max){
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function generateRandomUser(members){
@@ -32,4 +36,4 @@ function generateRandomRole(roles){
     const randomRole = selectedRolesArray[randomIndex];
     return randomRole;
 }
-module.exports = { generateRandomName, generateRandomColor, generateRandomUser, generateRandomRole };
+module.exports = { generateRandomNick, generateRandomColor, generateRandomUser, generateRandomRole, generateRandomNumber };

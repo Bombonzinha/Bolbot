@@ -11,7 +11,19 @@ const commands = [
                 description: 'Number of shuffles',
                 type: ApplicationCommandOptionType.Number,
                 required: false
-            }
+            },
+            {
+                name: 'minchar',
+                description: 'Minimum characters DEFAULT = 1',
+                type: ApplicationCommandOptionType.Number,
+                required: false
+            },
+            {
+                name: 'maxchar',
+                description: 'Maximum characters DEFAULT & MAX = 32',
+                type: ApplicationCommandOptionType.Number,
+                required: false
+            },
         ]
     },
     {
@@ -23,7 +35,19 @@ const commands = [
                 description: 'Number of shuffles',
                 type: ApplicationCommandOptionType.Number,
                 required: false
-            }
+            },
+            {
+                name: 'min',
+                description: 'Minimum characters DEFAULT = 1',
+                type: ApplicationCommandOptionType.Number,
+                required: false
+            },
+            {
+                name: 'max',
+                description: 'Maximum characters DEFAULT & MAX = 32',
+                type: ApplicationCommandOptionType.Number,
+                required: false
+            },
         ]
     },
     {
@@ -72,7 +96,7 @@ const commands = [
         options: [
             {
                 name: 'quantity',
-                description: 'Number of users',
+                description: 'Number of roles',
                 type: ApplicationCommandOptionType.Number,
                 required: false
             },
@@ -91,6 +115,30 @@ const commands = [
                         value: false
                     }
                 ]
+            }
+        ]
+    },
+    {
+        name: 'randnumber',
+        description: 'Generate random NUMBER',
+        options: [
+            {
+                name: 'quantity',
+                description: 'Numbers',
+                type: ApplicationCommandOptionType.Number,
+                required: false
+            },
+            {
+                name: 'min',
+                description: 'Minimum values DEFAULT = 0',
+                type: ApplicationCommandOptionType.Number,
+                required: false,
+            },
+            {
+                name: 'max',
+                description: 'Maximum values DEFAULT = 100',
+                type: ApplicationCommandOptionType.Number,
+                required: false,
             }
         ]
     },

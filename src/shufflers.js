@@ -8,8 +8,10 @@ async function fullShuffle(interaction) {
     const { guild, members } = await checkers.checkPermissionsAndFetchMembers(interaction);
     if (!members) return; 
     let quantity = await functions.getQuantity(interaction);
+    // SI SE ELIGIERON OPCIONES, ACA SE OBTIENEN LOS MIN Y MAX. SINO, SE UNA 1 MIN Y MAX 20 POR DEFECTO
+    const { min, max } = await functions.getMinMax(interaction, 1, 20);
     for (let i = 0; i<quantity;i++){
-        const namePromise = changeMemberNicknames(members);
+        const namePromise = changeMemberNicknames(members, min, max);
         const colorPromise = changeRoleColors(guild);
         await Promise.all([namePromise, colorPromise]);
     }
@@ -20,8 +22,10 @@ async function nameShuffle(interaction) {
     const { members } = await checkers.checkPermissionsAndFetchMembers(interaction);
     if (!members) return; 
     let quantity = await functions.getQuantity(interaction);
+    // SI SE ELIGIERON OPCIONES, ACA SE OBTIENEN LOS MIN Y MAX. SINO, SE UNA 1 MIN Y MAX 20 POR DEFECTO
+    const { min, max } = await functions.getMinMax(interaction, 1, 20);
     for (let i=0;i<quantity;i++){
-        await changeMemberNicknames(members);
+        await changeMemberNicknames(members, min, max);
     }
 }
 // Colores
@@ -36,17 +40,18 @@ async function colourShuffle(interaction) {
 
 // CHANGERS: SON LOS QUE CAMBIAN DIRECTAMENTE LOS PARAMETROS
 // Nicks
-async function changeMemberNicknames(members) {
+async function changeMemberNicknames(members, min, max) {
     if (members.size === 0) {
         console.log("No hay miembros disponibles para cambiar el apodo.");
         return;
     }
-    const promises = members.map(member => nameChanger(member));
+    const promises = members.map(member => nameChanger(member, min, max));
 
     await Promise.all(promises);
 }
-async function nameChanger(member){
-    const newName = random.generateRandomName();
+// Cambia el nombre generando un nombre random con min y max
+async function nameChanger(member, min, max){
+    const newName = random.generateRandomNick(min, max);
     try {
         await member.setNickname(newName);
         console.log(`${member.user.tag} to ${newName}`);

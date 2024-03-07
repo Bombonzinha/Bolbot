@@ -7,7 +7,21 @@ async function getQuantity(interaction){
     }
     return quantity;
 }
+// OBTIENE EL MIN Y EL MAX DE LAS OPCIONES: SI NO SE PUSO UNA, EL VALOR POR DEFECTO ESTA DEFINIDO ACÁ
+async function getMinMax(interaction, min = 0, max = 100){
+    const minOption = interaction.options.get('min');
+    const maxOption = interaction.options.get('max');
+    if (minOption !== null) { 
+        min = await minOption.value;
+    }
+    if (maxOption !== null) {
+        max = await maxOption.value;
+    }
+    console.log(min, max);
+    return { min, max };
+}
 
 module.exports = {
-    getQuantity
+    getQuantity,
+    getMinMax
 };
