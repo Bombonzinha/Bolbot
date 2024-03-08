@@ -1,9 +1,10 @@
 require('dotenv').config();
+const commandNames = require('./utils/commands.js');
 const { REST, Routes, ApplicationCommandOptionType } = require('discord.js');
 
 const commands = [
     {
-        name: 'shuffle',
+        name: commandNames.shuffle,
         description: 'Shuffles names and colours!',
         options: [
             {
@@ -27,7 +28,7 @@ const commands = [
         ]
     },
     {
-        name: 'nameshuffle',
+        name: commandNames.shufflename,
         description: 'Shuffles names!',
         options: [
             {
@@ -51,7 +52,7 @@ const commands = [
         ]
     },
     {
-        name: 'colourshuffle',
+        name: commandNames.shufflecolour,
         description: 'Shuffles colours!',
         options: [
             {
@@ -63,7 +64,7 @@ const commands = [
         ]
     },
     {
-        name: 'randuser',
+        name: commandNames.randuser,
         description: 'Generate random USER',
         options: [
             {
@@ -91,7 +92,7 @@ const commands = [
         ]
     },
     {
-        name: 'randrole',
+        name: commandNames.randrole,
         description: 'Generate random ROLE',
         options: [
             {
@@ -119,7 +120,7 @@ const commands = [
         ]
     },
     {
-        name: 'randnumber',
+        name: commandNames.randnumber,
         description: 'Generate random NUMBER',
         options: [
             {

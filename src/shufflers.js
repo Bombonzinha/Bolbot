@@ -1,6 +1,6 @@
-const random = require('./random.js');
-const checkers = require('./checkers.js');
-const functions = require('./functions.js');
+const random = require('./utils/random.js');
+const checkers = require('./utils/checkers.js');
+const functions = require('./utils/functions.js');
 
 // Shufflers: son los que iteran y deciden qué parametros cambiar
 // Full
@@ -56,7 +56,7 @@ async function nameChanger(member, min, max){
         await member.setNickname(newName);
         console.log(`${member.user.tag} to ${newName}`);
     } catch (error) {
-        console.error(`CAN'T CHANGE ${member.user.tag}: ${error.message}`);
+        console.error(`${member.user.tag}: ${error.message}`);
     }
 }
 // Colores

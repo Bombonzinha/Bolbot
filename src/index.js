@@ -1,8 +1,10 @@
 require('dotenv').config();
 const { Client, IntentsBitField, PermissionsBitField } = require('discord.js');
 const actions = require('./actions.js');
-const shuffleCommands = ['shuffle', 'nameshuffle', 'colourshuffle'];
-const randomCommands = ['random', 'randuser', 'randrole', 'randnumber', 'randname', 'randcolour', 'randchar', 'randtext'];
+const commandNames = require('./utils/commands.js');
+const shuffleCommands = [commandNames.shuffle, commandNames.shufflename, commandNames.shufflecolour];
+const randomCommands = [commandNames.randrand, commandNames.randuser, commandNames.randrole, commandNames.randnumber, 
+                        commandNames.randname, commandNames.randcolour, commandNames.randchar, commandNames.randtext];
 
 const client = new Client({
     intents: [

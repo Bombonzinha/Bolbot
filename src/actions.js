@@ -1,16 +1,18 @@
 const shufflers = require('./shufflers.js');
 const generators = require('./generators.js');
+const commandNames = require('./utils/commands.js');
+
 // SHUFFLERS
 async function selectShuffle(interaction){
     const commandName = interaction.commandName;
     switch (commandName) {
-        case 'shuffle':
+        case commandNames.shuffle:
             await shufflers.fullShuffle(interaction);
             break;
-        case 'nameshuffle':
+        case commandNames.shufflename:
             await shufflers.nameShuffle(interaction);
             break;
-        case 'colourshuffle':
+        case commandNames.shufflecolour:
             await shufflers.colourShuffle(interaction);
             break;
         default:
@@ -21,28 +23,28 @@ async function selectShuffle(interaction){
 async function selectRandom(interaction){
     const commandName = interaction.commandName;
     switch (commandName) {
-        case 'random':
+        case commandNames.randrand:
             await generators.random(interaction);
             break;
-        case 'randuser':
+        case commandNames.randuser:
             await generators.user(interaction);
             break;
-        case 'randrole':
+        case commandNames.randrole:
             await generators.role(interaction);
             break;
-        case 'randnumber':
+        case commandNames.randnumber:
             await generators.number(interaction);
             break;
-        case 'randname':
+        case commandNames.randname:
             await generators.name(interaction);
             break;
-        case 'randcolour':
+        case commandNames.randcolour:
             await generators.colour(interaction);
             break;
-        case 'randchar':
+        case commandNames.randchar:
             await generators.char(interaction);
             break;
-        case 'randtext':
+        case commandNames.randtext:
             await generators.text(interaction);
             break;
         default:

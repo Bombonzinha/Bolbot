@@ -1,6 +1,6 @@
-const random = require('./random.js');
-const checkers = require('./checkers.js');
-const functions = require('./functions.js');
+const random = require('./utils/random.js');
+const checkers = require('./utils/checkers.js');
+const functions = require('./utils/functions.js');
 
 async function user(interaction) {
     try {
