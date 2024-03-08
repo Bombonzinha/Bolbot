@@ -1,18 +1,25 @@
 const shufflers = require('./shufflers.js');
 const generators = require('./generators.js');
 const commandNames = require('./utils/commands.js');
+const checkers = require('./utils/checkers.js');
 
 // SHUFFLERS
 async function selectShuffle(interaction){
-    const commandName = interaction.commandName;
+    const { commandName, member } = interaction;
     switch (commandName) {
+        // Lee el comando que ingreso
         case commandNames.shuffle:
+            // Si el usuario no tiene el rol que necesita el comando, retorna fallo
+            if (!checkers.isAdmin(member)) return interaction.reply({ content: '¡Denied permissions!', ephemeral: true });
+            // Si lo tiene, llama a la acción
             await shufflers.fullShuffle(interaction);
             break;
         case commandNames.shufflename:
+            if (!checkers.isAdmin(member)) return interaction.reply({ content: '¡Denied permissions!', ephemeral: true });
             await shufflers.nameShuffle(interaction);
             break;
         case commandNames.shufflecolour:
+            if (!checkers.isAdmin(member)) return interaction.reply({ content: '¡Denied permissions!', ephemeral: true });
             await shufflers.colourShuffle(interaction);
             break;
         default:
@@ -21,7 +28,7 @@ async function selectShuffle(interaction){
 }
 // RANDOM GENERATORS
 async function selectRandom(interaction){
-    const commandName = interaction.commandName;
+    const { commandName, member } = interaction;
     switch (commandName) {
         case commandNames.randrand:
             await generators.random(interaction);

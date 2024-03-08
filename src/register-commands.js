@@ -69,7 +69,7 @@ const commands = [
         options: [
             {
                 name: 'quantity',
-                description: 'Number of users',
+                description: 'Number of users MAX = 100',
                 type: ApplicationCommandOptionType.Number,
                 required: false
             },
@@ -97,7 +97,7 @@ const commands = [
         options: [
             {
                 name: 'quantity',
-                description: 'Number of roles',
+                description: 'Number of roles MAX = 100',
                 type: ApplicationCommandOptionType.Number,
                 required: false
             },
@@ -140,6 +140,18 @@ const commands = [
                 description: 'Maximum values DEFAULT = 100',
                 type: ApplicationCommandOptionType.Number,
                 required: false,
+            }
+        ]
+    },
+    {
+        name: commandNames.randcolour,
+        description: 'Generate random COLOUR',
+        options: [
+            {
+                name: 'quantity',
+                description: 'Number of colours MAX = 19',
+                type: ApplicationCommandOptionType.Number,
+                required: false
             }
         ]
     },

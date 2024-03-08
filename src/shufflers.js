@@ -1,6 +1,7 @@
 const random = require('./utils/random.js');
 const checkers = require('./utils/checkers.js');
 const functions = require('./utils/functions.js');
+const { PermissionsBitField } = require('discord.js');
 
 // Shufflers: son los que iteran y deciden qué parametros cambiar
 // Full
@@ -71,12 +72,12 @@ async function changeRoleColors(guild) {
     await Promise.all(promises);
 }
 async function colorChanger(role){
-    const newColor = random.generateRandomColor();
+    const newColor = random.generateRandomColor().hex;
     try {
         await role.setColor(newColor);
         console.log(`${role.name} to ${newColor}`);
     } catch (error) {
-        console.error(`CAN'T CHANGE ${role.name}: ${error.message}`);
+        console.error(`${role.name}: ${error.message}`);
     }
 }
 

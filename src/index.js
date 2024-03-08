@@ -14,19 +14,20 @@ const client = new Client({
         /* IntentsBitField.Flags.MessageContent */
     ]
 });
-
 client.on('ready', (c)=> {
     console.log(`${c.user.tag} is online`);
 });
 
 client.on('interactionCreate', async (interaction) =>{
     if (!interaction.isChatInputCommand) return;
-    if (shuffleCommands.includes(interaction.commandName)) {
-        interaction.reply({ content: interaction.commandName.toUpperCase() + '!'});
+    const { commandName } = interaction;
+
+    if (shuffleCommands.includes(commandName)) {
+        interaction.reply({ content: commandName.toUpperCase() + '!'});
         console.log('------------SHUFFLING------------');
         await actions.selectShuffle(interaction);
     }
-    if (randomCommands.includes(interaction.commandName)) {
+    if (randomCommands.includes(commandName)) {
         console.log('------------RANDOM!------------');
         await actions.selectRandom(interaction);
     }

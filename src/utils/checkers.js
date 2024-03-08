@@ -28,9 +28,13 @@ async function checkMembers(guild) {
         throw new Error('Error al obtener los miembros del servidor:', error);
     }
 }
+function isAdmin(member) {
+    return member.permissions.has(PermissionsBitField.Flags.Administrator);
+}
 
 module.exports = {
     checkPermissionsAndFetchMembers,
     checkGuildPermissions,
-    checkMembers
+    checkMembers,
+    isAdmin
 };

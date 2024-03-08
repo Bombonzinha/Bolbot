@@ -1,7 +1,9 @@
 const random = require('./utils/random.js');
 const checkers = require('./utils/checkers.js');
 const functions = require('./utils/functions.js');
+const { createCanvas, loadImage } = require('canvas');
 
+// USER
 async function user(interaction) {
     try {
         const { members } = await checkers.checkPermissionsAndFetchMembers(interaction);
@@ -14,7 +16,7 @@ async function user(interaction) {
             selectedMembers = members.filter(member => !member.user.bot);
         }
         // Obtengo la cantidad de iteraciones elegidas en la opción
-        let quantity = await functions.getQuantity(interaction);
+        let quantity = await functions.getQuantity(interaction, 100);
 
         if (quantity === 1){
             // Mete los miembros en un array y elije uno random 
@@ -29,13 +31,14 @@ async function user(interaction) {
             }
             // Une las menciones en una sola cadena
             let mentionString = randomMembers.join(' ');
-            interaction.reply({ content: mentionString });
+            interaction.reply({ content: mentionString});
         }
     } catch (error) {
         console.error('Error al seleccionar un miembro aleatorio:', error);
         return null;
     }
 }
+// ROL
 async function role(interaction) {
     try {
         const { guild } = await checkers.checkPermissionsAndFetchMembers(interaction);
@@ -55,7 +58,7 @@ async function role(interaction) {
             selectedRoles = roles.filter(role => !role.managed);
         }
         // Obtengo la cantidad de iteraciones elegidas en la opción
-        let quantity = await functions.getQuantity(interaction);
+        let quantity = await functions.getQuantity(interaction, 100);
 
         if (quantity === 1){
             // Mete los roles en un array y elije uno random 
@@ -77,6 +80,7 @@ async function role(interaction) {
         return null;
     }
 }
+// NUMERO
 async function number(interaction) {
     try {
         const { min, max } = await functions.getMinMax(interaction);
@@ -94,13 +98,74 @@ async function number(interaction) {
             interaction.reply({ content: replyString });
         }
     } catch (error) {
-        console.error('Error al seleccionar un rol aleatorio:', error);
+        console.error('Error al generar un numero aleatorio:', error);
         return null;
     }
 }
+// COLOR
+/* async function colour(interaction, quantity){
+    const colorObj = random.generateRandomColor();
+    const colorInfo = `RGB: ${colorObj.rgb.join(', ')}\nHSL: ${colorObj.hsl.join(', ')}\nHex: ${colorObj.hex}`;
+    const colorImageBuffer = colorObj.image();
 
+    interaction.reply({
+        content: colorInfo,
+        files: [{
+            attachment: colorImageBuffer,
+            name: 'color.png'
+        }]
+    });
+} */
+async function colour(interaction) {
+    try {
+        let quantity = await functions.getQuantity(interaction, 19); // Maximo 19
+        const canvasWidth = 100 * quantity; // Ancho del lienzo para los colores
+        const canvasHeight = 100; // Alto del lienzo para los colores
+
+        // Crear un lienzo para los colores
+        const canvas = createCanvas(canvasWidth, canvasHeight);
+        const ctx = canvas.getContext('2d');
+
+        // Array para almacenar la información de cada color
+        const colors = [];
+
+        // Generar colores y dibujarlos en el lienzo
+        for (let i = 0; i < quantity; i++) {
+            const colorObj = random.generateRandomColor();
+            const colorImageBuffer = colorObj.image();
+            const xOffset = i * 100; // Desplazamiento horizontal para cada color
+
+            // Dibujar la imagen del color en el lienzo
+            const colorImage = await loadImage(colorImageBuffer);
+            ctx.drawImage(colorImage, xOffset, 0);
+
+            // Almacenar la información del color
+            colors.push(colorObj.info());
+        }
+
+        // Convertir el lienzo a un buffer de imagen
+        const colorCanvasBuffer = canvas.toBuffer();
+
+        // Unir la información de los colores en una sola cadena
+        const colorInfo = colors.join('\n\n');
+        const colorInfoCodeBlock = "```\n" + colorInfo + "\n```";
+
+        // Responder con la información y la imagen de los colores
+        interaction.reply({
+            content: colorInfoCodeBlock,
+            files: [{
+                attachment: colorCanvasBuffer,
+                name: 'colors.png'
+            }]
+        });
+    } catch (error) {
+        console.error('Error al generar colores aleatorios:', error.message);
+        return null;
+    }
+}
 module.exports = {
     user,
     role,
-    number
+    number,
+    colour
 };

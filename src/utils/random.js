@@ -1,3 +1,4 @@
+const Colour = require('../models/colour.js');
 module.exports = {
     generateRandomNick: function generateRandomNick(min, max) {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -11,8 +12,7 @@ module.exports = {
     },
 
     generateRandomColor: function generateRandomColor() {
-        const color = Math.floor(Math.random() * 16777215).toString(16);
-        return '#' + '0'.repeat(6 - color.length) + color;
+        return new Colour();
     },
 
     generateRandomNumber: function generateRandomNumber(min, max){
