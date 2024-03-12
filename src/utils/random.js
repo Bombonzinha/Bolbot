@@ -1,6 +1,7 @@
-const Colour = require('../models/colour.js');
+const { Colour, Char } = require('../models');
+
 module.exports = {
-    generateRandomNick: function generateRandomNick(min, max) {
+    generateRandomNick: function generateRandomNick(min = 1, max = 32) {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         if (max > 32) max=32; // ES EL MAXIMO QUE PERMITE DISCORD
         const nameLength = this.generateRandomNumber(min, max); // Random length between 1 and 10 characters
@@ -19,6 +20,25 @@ module.exports = {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     },
 
+    generateRandomChar: function generateRandomChar(type){
+        const randomChar = new Char();
+        switch (type) {
+            case 'char': return randomChar.char;
+            break;
+            case 'lowercase': return randomChar.lowercase;
+            break;
+            case 'uppercase': return randomChar.uppercase;
+            break;
+            case 'number': return randomChar.number;
+            break;
+            case 'special': return randomChar.special;
+            break;
+            case 'letter': return Math.random() < 0.5 ? randomChar.lowercase : randomChar.uppercase;
+            break;
+            default:
+            break;
+        }
+    },
     generateRandomUser: function generateRandomUser(members){
         // Hago un array de los miembros
         const selectedMembersArray = Array.from(members.values());
