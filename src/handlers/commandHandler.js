@@ -4,7 +4,7 @@ const shuffleHandler = require('./shuffle/shuffleHandler');
 module.exports = {
     async handleSlashCommand(interaction) {
         const commandName = interaction.commandName;
-
+        
         switch (commandName) {
             case 'random':
                 await randomHandler.handleSubCommand(interaction);

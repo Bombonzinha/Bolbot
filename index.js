@@ -10,6 +10,7 @@ const client = new Client({
         IntentsBitField.Flags.GuildMessages,
         IntentsBitField.Flags.GuildEmojisAndStickers,
         IntentsBitField.Flags.GuildMessageReactions,
+        IntentsBitField.Flags.GuildPresences,
     ], // Your bot's intents
 });
 

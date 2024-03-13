@@ -37,7 +37,7 @@ module.exports = {
       }
       // Une las menciones en una sola cadena
       let mentionString = randomRoles.join(' ');
-      interaction.reply({ content: mentionString});
+      interaction.reply({ content: mentionString });
     } catch (error) {
       console.error('Error al seleccionar un rol aleatorio:', error);
       return null;

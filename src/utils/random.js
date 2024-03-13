@@ -56,5 +56,23 @@ module.exports = {
         // Elijo uno random de esos
         const randomRole = selectedRolesArray[randomIndex];
         return randomRole;
-    }
+    },
+    /* generateRandomAnything: function generateRandomAnything(){
+        // Defino qué cosas puede generar el random
+        const types = ['user', 'role', 'number', 'char']; 
+        const type = types[Math.floor(Math.random() * types.length)];
+        switch (type) {
+            case 'user': return this.generateRandomUser() 
+            break;
+            case 'role': return randomChar.lowercase;
+            break;
+            case 'number': return randomChar.uppercase;
+            break;
+            case 'char': return randomChar.number;
+            break;
+            default:
+            break;
+        }
+
+    } */
 };
