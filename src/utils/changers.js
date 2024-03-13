@@ -45,6 +45,13 @@ module.exports = {
         continue;
       }
       try {
+        // Verificar si ya existe un rol con el mismo nombre
+        const existingRole = guild.roles.cache.find(role => role.name === `${member.user.tag}'s Role`);
+        if (existingRole) {
+            await member.roles.add(existingRole);
+            membersRole.push(existingRole);
+            console.log(`Rol existente asignado a ${member.user.tag}`);
+        } else {
           const newRole = await guild.roles.create(/* {
               data: {
                   name: `${member.user.tag}'s Role`, 
@@ -53,15 +60,32 @@ module.exports = {
               },
               reason: 'COLOUR SHUFFLE',             NO SE POR QUÉ NO FUNCIONA
           } */);
-          guild.roles.edit(newRole.id, { name: `${member.user.tag}'s Role`, color: random.generateRandomColor().hex/* , position: guild.members.me.roles.highest.position */});
-          member.roles.add(newRole); 
+          await guild.roles.edit(newRole.id, { name: `${member.user.tag}'s Role`, position: guild.members.me.roles.highest.position - 1});
+          await member.roles.add(newRole); 
           membersRole.push(newRole);
           console.log(`Rol creado y asignado a ${member.user.tag}`);
+        }
       } catch (error) {
           console.error(`Error al crear y asignar un rol para ${member.user.tag}: ${error}`);
       }
     };
     return membersRole;
+  },
+  getRoles: async function getRoles(roles, members) {
+    let userRoles = [];
+    // Para cada miembro, busca el rol que tenga 
+    for (const member of members.values())  {
+      for (const role of roles.values()) {
+        console.log(role.name + ' ' + member.user.tag);
+        if (role.name === `${member.user.tag}'s Role`) {
+          userRoles.push(role);
+          console.log(`Obtained ${role.name}`);
+          break;
+        }
+      }
+    }
+
+    return userRoles;
   },
   // Eliminar los roles creados
   deleteRoles: async function deleteRoles(rolesToDelete) {

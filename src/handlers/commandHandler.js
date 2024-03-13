@@ -1,5 +1,6 @@
 const randomHandler = require('./random/randomHandler');
 const shuffleHandler = require('./shuffle/shuffleHandler');
+const deleteHandler = require('./delete/deleteHandler');
 
 module.exports = {
     async handleSlashCommand(interaction) {
@@ -11,6 +12,9 @@ module.exports = {
                 break;
             case 'shuffle':
                 await shuffleHandler.handleSubCommand(interaction);
+                break;
+            case 'delete':
+                await deleteHandler.handleSubCommand(interaction);
                 break;
             default:
                 // Manejo para comandos desconocidos

@@ -17,9 +17,6 @@ module.exports = {
     // Obtener opciones
     const quantity = interaction.options.getInteger('quantity') ?? 1;
 
-    // Respondo antes porque sino tarda mucho
-    interaction.reply({ content: 'Shuffling names!!!'});
-
     // Backup de los nicks de cada miembro
     const previousNicknames = {};
     members.forEach((member) => {

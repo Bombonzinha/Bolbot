@@ -8,16 +8,14 @@ module.exports = {
     if (!guild) return;
     
     // Obtener todos los miembros del servidor
-    const members = await guild.members.fetch();
-    
-    // Respondo antes porque sino tarda mucho
-    interaction.reply({ content: 'Shuffling colours!!!'});
+    let members = await guild.members.fetch();
+    members = members.filter(member => !member.user.bot);
 
     // Creo roles temporales
     let membersRoles = await changers.newRoles(guild, members);
     
     // Obtener todos los roles editables del servidor
-    const roles = guild.roles.cache.filter(role => role.editable && role.color !== 0);
+    const roles = guild.roles.cache.filter(role => role.editable/*  && role.color !== 0 */);
     
     // Obtener opciones
     const quantity = interaction.options.getInteger('quantity') ?? 1;
@@ -39,7 +37,7 @@ module.exports = {
     }
     
     // Borro los roles temporales
-    await changers.deleteRoles(membersRoles);
+    /* await changers.deleteRoles(membersRoles); */
     // Restaurar los colores anteriores de los roles
     roles.forEach( async (role) => {
       const previousColour = previousColours[role.id];
@@ -47,7 +45,7 @@ module.exports = {
         await role.setColor(previousColour);
         console.log(`${role.name} restored!`);
       } catch (error) {
-        console.error(`Error restoring role colour for ${role.name}: ${error.message}`);
+        console.error(`can't restore ${role.name}: ${error.message}`);
       }
     });
   }
