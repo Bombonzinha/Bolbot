@@ -1,21 +1,20 @@
 const shuffleFull = require('./shuffleFull');
-const shuffleColour = require('./shuffleColours');
-const shuffleName = require('./shuffleNames');
+const shuffleColours = require('./shuffleColours');
+const shuffleNames = require('./shuffleNames');
 
 module.exports = {
     async handleSubCommand(interaction) {
         const subcommand = interaction.options.getSubcommand();
         // Respondo antes porque sino tarda mucho
-        interaction.reply({ content: 'Shuffling ' + subcommand + '!!!', ephemeral: true});
         switch (subcommand) {
             case 'full':
                 await shuffleFull.execute(interaction);
                 break;
             case 'colours':
-                await shuffleColour.execute(interaction);
+                await shuffleColours.execute(interaction);
                 break;
             case 'names':
-                await shuffleName.execute(interaction);
+                await shuffleNames.execute(interaction);
                 break;
             default:
                 // Manejar comando no reconocido

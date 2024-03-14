@@ -1,13 +1,16 @@
-const deleteShuffleRoles = require('./deleteShuffleRoles');
+const rolesDelete = require('./rolesDelete');
+const rolesCreate = require('./rolesCreate');
 
 module.exports = {
   async handleSubCommand(interaction) {
       const subcommand = interaction.options.getSubcommand();
       // Respondo antes porque sino tarda mucho
-      interaction.reply({ content: 'Deleting ' + subcommand + '!!!', ephemeral: true});
       switch (subcommand) {
-          case 'shuffleroles':
-              await deleteShuffleRoles.execute(interaction);
+          case 'create':
+              await rolesCreate.execute(interaction);
+              break;
+          case 'delete':
+              await rolesDelete.execute(interaction);
               break;
           default:
               // Manejar comando no reconocido

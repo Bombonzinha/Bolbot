@@ -1,4 +1,4 @@
-const changers = require('../../utils/changers');
+const { changeNicknames } = require('../../utils/user');
 const { getMinMax } = require('../../utils/parameters.js');
 
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
         // Ejecuto el mezclador
         try {
           for (let i=0; i<quantity; i++){
-            await changers.changeNicknames(members, min, max);
+            await changeNicknames(members, min, max);
           }
         } catch (error) {
           console.error('Error al mezclar:', error);
