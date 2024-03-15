@@ -17,31 +17,38 @@ module.exports = {
     // Obtener opciones
     const quantity = interaction.options.getInteger('quantity') ?? 1;
 
+    interaction.reply({ content: 'Shuffling...', ephemeral: true});
+
     // Backup de los nicks de cada miembro
     const previousNicknames = {};
-    members.forEach((member) => {
+    for (const member of members.values()) {
       previousNicknames[member.id] = member.nickname;
-    });
+    };
+    console.log('Todos los nicks backupeados');
     
-        // Ejecuto el mezclador
-        try {
-          for (let i=0; i<quantity; i++){
-            await changeNicknames(members, min, max);
-          }
-        } catch (error) {
-          console.error('Error al mezclar:', error);
-          return null;
-        }
+    // Ejecuto el mezclador
+    try {
+      for (let i=0; i<quantity; i++){
+        await changeNicknames(members, min, max);
+      }
+    } catch (error) {
+      console.error('Error al mezclar:', error);
+      return null;
+    }
 
+    interaction.editReply({ content: 'Shuffle Done! Restoring names...', ephemeral: true});
+      
     // Restaurar los nombres anteriores de los miembros
-    members.forEach( async (member) => {
+    for (const member of members.values()) {
       const previousNickname = previousNicknames[member.id];
       try {
         await member.setNickname(previousNickname);
-        console.log(`${member.user.tag} restored!`);
+        console.log(`Nick de ${member.user.tag} restaurado!`);
       } catch (error) {
-        console.error(`Error restoring nickname for ${member.user.tag}: ${error.message}`);
+        console.error(`Error al restaurar el nick de ${member.user.tag}: ${error.message}`);
       }
-    });
+    };
+    interaction.editReply({ content: 'Finished!', ephemeral: true});
+    console.log('Todos los nombres restaurados');
   }
 }

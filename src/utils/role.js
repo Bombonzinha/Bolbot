@@ -8,32 +8,17 @@ module.exports = {
         return;
     }
     // Crea un array con todos los roles, y a cada uno le cambia el color
-    const promises = roles.map( async (role) => {
+    const promises = [];
+    for (const role of roles.values()) {
       const newColor = random.generateRandomColor().hex;
       try {
-          await role.setColor(newColor);
+          const promise = await role.setColor(newColor);
+          promises.push(promise);
           console.log(`${role.name} cambiado a:${newColor}`);
       } catch (error) {
           console.error(`${role.name}: ${error.message}`);
       }
-    });
-    await Promise.all(promises);
-  },
-  // Le asigna un color a los roles HAY QUE DEFINIR EL ARRAY DE COLORES
-  setRolesColour: async function setRolesColour(roles, colours) {
-    if (roles.length === 0) {
-        console.log("No hay roles editables con colores disponibles.");
-        return;
-    }
-    // Crea un array con todos los roles, y a cada uno le cambia el color
-    const promises = roles.map( async (role) => {
-      try {
-        await role.setColor(colours);
-          console.log(`${role.name} to ${colours}`);
-      } catch (error) {
-          console.error(`${role.name}: ${error.message}`);
-      }
-    });
+    };
     await Promise.all(promises);
   },
   newRoles: async function newRoles(guild, members) {

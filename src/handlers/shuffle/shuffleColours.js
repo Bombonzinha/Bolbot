@@ -27,6 +27,7 @@ module.exports = {
     const quantity = interaction.options.getInteger('quantity') ?? 1;
 
     interaction.reply({ content: 'Shuffling...', ephemeral: true});
+
     // Backup de los colores de cada rol, y lo seteo a 0
     const previousColours = {};
     /* roles.forEach( async (role) => */
@@ -50,7 +51,9 @@ module.exports = {
       console.error('Error al mezclar:', error);
       return null;
     }
+
     interaction.editReply({ content: 'Shuffle Done! Restoring colours...', ephemeral: true});
+    
     // Restaurar los colores anteriores de los roles
     for (const role of roles.values()) {
       const previousColour = previousColours[role.id];
