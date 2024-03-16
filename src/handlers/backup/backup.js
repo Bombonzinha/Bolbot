@@ -63,7 +63,7 @@ module.exports = {
     fs.writeFileSync('src/data/guilds.json', JSON.stringify(guildsData, null, 2));
     console.log('Datos guardados!');
     
-    interaction.reply({ content: 'Backup Done!', ephemeral: true});
+    interaction.reply({ content: 'Backup Done!'});
     console.log('Todos los users y roles backupeados');
   }
 }

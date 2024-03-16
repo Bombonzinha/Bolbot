@@ -20,7 +20,7 @@ new CommandHandler({
     commandsPath: path.join(directorio, 'commands'), // The commands directory
     eventsPath: path.join(directorio, 'events'), // The events directory
     validationsPath: path.join(directorio, 'validations'), // Only works if commandsPath is provided
-    testServer: '1203555765420302436', // To register guild-based commands (if it's not provided commands will be registered globally)
+    /* testServer: '1203555765420302436', */ // To register guild-based commands (if it's not provided commands will be registered globally)
 });
 
 client.login(process.env.TOKEN);

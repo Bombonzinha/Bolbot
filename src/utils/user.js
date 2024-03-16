@@ -26,20 +26,20 @@ module.exports = {
       return;
     }
     const promises = [];
-    for (const userData of membersData) {
-      const member = await members.fetch(userData.id);
-      if (member) {
+    for (const member of members.values()) {
+      const userData = membersData.find(data => data.id === member.id);
+      if (userData) {
           try {
-            if(member.nickname !== userData.nickname) {
-              const promise = await member.setNickname(userData.nickname);
-              promises.push(promise);
-              console.log(`Nickname de ${member.user.tag} restaurado: ${userData.nickname}`);
-            }
+              if (member.nickname !== userData.nickname) {
+                  const promise = await member.setNickname(userData.nickname);
+                  promises.push(promise);
+                  console.log(`Nickname de ${member.user.tag} restaurado: ${userData.nickname}`);
+              }
           } catch (error) {
               console.error(`Error al restaurar el nickname de ${member.user.tag}: ${error.message}`);
           }
       }
-    }
+  }
     await Promise.all(promises);
   }
 }

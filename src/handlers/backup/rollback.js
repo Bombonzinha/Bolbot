@@ -11,11 +11,11 @@ module.exports = {
     /* NO SE LE AGREGA .fetch() PORQUE ESO DEVUELVE LOS OBJETOS, 
     Y NECESITO RETORNAR UNO POR UNO EN LAS FUNCIONES SET*/
     // Obtener todos los miembros del servidor
-    const members = await guild.members;
+    const members = await guild.members.fetch();
     
     // Obtener todos los roles editables del servidor
-    const roles = await guild.roles;
-    await interaction.reply({ content: 'Rollbacking...', ephemeral: true});
+    const roles = await guild.roles.fetch();
+    await interaction.reply({ content: 'Rollbacking...'});
     
     try {
       // Leer los datos existentes del archivo si existe
@@ -25,13 +25,12 @@ module.exports = {
       
       if (!guildData) {
         console.log('Guild no encontrado.');
-        interaction.editReply({ content: 'Rollback failed, guild not found', ephemeral: true});
+        interaction.editReply({ content: 'Rollback failed, guild not found'});
         return 
       }
 
       const membersData = guildData.users || [];
       const rolesData = guildData.roles || [];
-      console.log(rolesData);
       // Rollback users
       console.log('Realizando rollback de usuarios...');
       await setNicknames(members, membersData);
@@ -40,7 +39,7 @@ module.exports = {
       console.log('Realizando rollback de roles...');
       await setRolesColour(roles, rolesData);
 
-      interaction.editReply({ content: 'Nicks & Roles restored!', ephemeral: true});
+      interaction.editReply({ content: 'Nicks & Roles restored!'});
       console.log('Rollback completado!');
     } catch (error) {
       console.log(error);
