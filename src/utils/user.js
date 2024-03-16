@@ -1,7 +1,7 @@
 const random = require('./random');
 
 module.exports = {
-  changeNicknames: async function changeNicknames(members, min, max) {
+  randomNicknames: async function randomNicknames(members, min, max) {
     if (members.size === 0) {
       console.log("No hay miembros disponibles para cambiar el apodo.");
       return;
@@ -13,10 +13,33 @@ module.exports = {
       try {
         const promise = await member.setNickname(newName);
         promises.push(promise);
-        console.log(`${member.user.tag} to ${newName}`);
+        console.log(`${member.user.tag} cambiado a ${newName}`);
       } catch (error) {
         console.error(`${member.user.tag}: ${error.message}`);
       }
     };
+    await Promise.all(promises);
+  },
+  setNicknames: async function setNicknames(members, membersData) {
+    if (members.size === 0) {
+      console.log("No hay miembros disponibles para cambiar el apodo.");
+      return;
+    }
+    const promises = [];
+    for (const userData of membersData) {
+      const member = await members.fetch(userData.id);
+      if (member) {
+          try {
+            if(member.nickname !== userData.nickname) {
+              const promise = await member.setNickname(userData.nickname);
+              promises.push(promise);
+              console.log(`Nickname de ${member.user.tag} restaurado: ${userData.nickname}`);
+            }
+          } catch (error) {
+              console.error(`Error al restaurar el nickname de ${member.user.tag}: ${error.message}`);
+          }
+      }
+    }
+    await Promise.all(promises);
   }
 }

@@ -1,0 +1,135 @@
+[
+  {
+    "id": "1203555765420302436",
+    "name": "Bolbonópolis",
+    "roles": [
+      {
+        "id": "1203555765420302436",
+        "name": "@everyone",
+        "color": 0
+      },
+      {
+        "id": "1214765266098061334",
+        "name": "Tatsu",
+        "color": 0
+      },
+      {
+        "id": "1215064699515699213",
+        "name": "Randomizer",
+        "color": 0
+      },
+      {
+        "id": "1215071056021168129",
+        "name": "Suraj",
+        "color": 0
+      },
+      {
+        "id": "1217656937454239754",
+        "name": "Bolbonopolitano",
+        "color": 0
+      },
+      {
+        "id": "1217997766392021113",
+        "name": "Tatsu#8792's Role",
+        "color": 8157662
+      },
+      {
+        "id": "1217997768958804050",
+        "name": "honkys's Role",
+        "color": 4938826
+      },
+      {
+        "id": "1217997770842177599",
+        "name": "homermm's Role",
+        "color": 9990360
+      },
+      {
+        "id": "1217997773165563946",
+        "name": "__adds__'s Role",
+        "color": 7331971
+      },
+      {
+        "id": "1217997776219275354",
+        "name": "vynus's Role",
+        "color": 1171574
+      },
+      {
+        "id": "1217997778119168022",
+        "name": "hushino's Role",
+        "color": 9033104
+      },
+      {
+        "id": "1217997780556189747",
+        "name": "bombonzinha's Role",
+        "color": 7025551
+      },
+      {
+        "id": "1217997783076700262",
+        "name": "mothbickle's Role",
+        "color": 1915729
+      },
+      {
+        "id": "1217997785459064872",
+        "name": "pilk_el_jijeante's Role",
+        "color": 12417682
+      },
+      {
+        "id": "1217997787573129287",
+        "name": "Bolbot#2686's Role",
+        "color": 2331728
+      }
+    ],
+    "users": [
+      {
+        "id": "172002275412279296",
+        "name": "Tatsu#8792",
+        "nickname": null
+      },
+      {
+        "id": "175694215647461376",
+        "name": "honkys",
+        "nickname": null
+      },
+      {
+        "id": "220228088263475201",
+        "name": "homermm",
+        "nickname": null
+      },
+      {
+        "id": "438029747109232640",
+        "name": "__adds__",
+        "nickname": null
+      },
+      {
+        "id": "728074995502153739",
+        "name": "vynus",
+        "nickname": "PROBANDO"
+      },
+      {
+        "id": "877204039400579122",
+        "name": "hushino",
+        "nickname": null
+      },
+      {
+        "id": "967967986524770365",
+        "name": "bombonzinha",
+        "nickname": "kAS2f00eQ"
+      },
+      {
+        "id": "1145523490573779078",
+        "name": "mothbickle",
+        "nickname": null
+      },
+      {
+        "id": "1172007104010268732",
+        "name": "pilk_el_jijeante",
+        "nickname": null
+      },
+      {
+        "id": "1213871826246041620",
+        "name": "Bolbot#2686",
+        "nickname": null
+      }
+    ]
+  }
+]

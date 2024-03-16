@@ -73,5 +73,26 @@ module.exports = {
           console.error('Error al eliminar roles:', error);
         }
     };
+  },
+  setRolesColour: async function setRolesColour(roles, rolesData) {
+    if (roles.size === 0) {
+      console.log("No hay roles disponibles para cambiar el color.");
+      return;
+    }
+    
+    const promises = [];
+    for (const roleData of rolesData) {
+      const role = await roles.fetch(roleData.id);
+      try {
+        if (role.color !== roleData.color) {
+          const promise = await role.setColor(roleData.color)
+          promises.push(promise);
+          console.log(`Color de ${role.name} restaurado: ${roleData.color}`);
+        }
+      } catch (error) {
+          console.error(`Error al restaurar el color de ${role.name}: ${error.message}`);
+      }
+    }
+    await Promise.all(promises);
   }
 }

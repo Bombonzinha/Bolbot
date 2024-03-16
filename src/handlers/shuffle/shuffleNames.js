@@ -1,4 +1,4 @@
-const { changeNicknames } = require('../../utils/user');
+const { randomNicknames } = require('../../utils/user');
 const { getMinMax } = require('../../utils/parameters.js');
 
 module.exports = {
@@ -19,36 +19,16 @@ module.exports = {
 
     interaction.reply({ content: 'Shuffling...', ephemeral: true});
 
-    // Backup de los nicks de cada miembro
-    const previousNicknames = {};
-    for (const member of members.values()) {
-      previousNicknames[member.id] = member.nickname;
-    };
-    console.log('Todos los nicks backupeados');
-    
     // Ejecuto el mezclador
     try {
       for (let i=0; i<quantity; i++){
-        await changeNicknames(members, min, max);
+        await randomNicknames(members, min, max);
       }
     } catch (error) {
       console.error('Error al mezclar:', error);
       return null;
     }
-
-    interaction.editReply({ content: 'Shuffle Done! Restoring names...', ephemeral: true});
-      
-    // Restaurar los nombres anteriores de los miembros
-    for (const member of members.values()) {
-      const previousNickname = previousNicknames[member.id];
-      try {
-        await member.setNickname(previousNickname);
-        console.log(`Nick de ${member.user.tag} restaurado!`);
-      } catch (error) {
-        console.error(`Error al restaurar el nick de ${member.user.tag}: ${error.message}`);
-      }
-    };
+    
     interaction.editReply({ content: 'Finished!', ephemeral: true});
-    console.log('Todos los nombres restaurados');
   }
 }

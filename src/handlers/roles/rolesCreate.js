@@ -9,10 +9,8 @@ module.exports = {
     
     // Obtener todos los miembros del servidor
     let members = await guild.members.fetch();
-    /* members = members.filter(member => !member.user.bot); */
     
     // Obtener todos los roles editables del servidor
-    /* const roles = guild.roles.cache.filter(role => role.editable); */
     const roles = await guild.roles.fetch();
 
     // Obtengo los roles de los users y verifico si aún no se crearon
