@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const commandHandler = require('../handlers/commandHandler');
 
 // OPCIONES
 // Opción integer
@@ -44,6 +45,6 @@ module.exports = {
         .addSubcommand(shuffleSubcommand('colours', 'Shuffles colours!', 100))
     ,
     run: async ({ interaction }) => {
-
+        await commandHandler.handleSlashCommand(interaction);
     }
 }

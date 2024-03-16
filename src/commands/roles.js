@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const commandHandler = require('../handlers/commandHandler');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -14,6 +15,7 @@ module.exports = {
     )
   ,
   run: async ({ interaction }) => {
-    
-  }
+    await commandHandler.handleSlashCommand(interaction);
+  },
+  adminOnly: true
 }

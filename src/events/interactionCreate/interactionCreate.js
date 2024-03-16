@@ -15,9 +15,9 @@ module.exports = async (interaction) => {
 			return;
 		} 
 
-		try {
+		/* try {
 			await commandHandler.handleSlashCommand(interaction);
 		} catch (error) {
 			console.error(error);
-		}
+		} */
 }

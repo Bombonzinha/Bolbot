@@ -17,14 +17,14 @@ module.exports = {
     const userRoles = await getRoles(roles, members);
     if (userRoles.length === 0) {
       console.log('No hay roles que mezclar');
-      interaction.reply({ content: 'There are no roles to shuffle. To add them use /roles create.', ephemeral: true});
+      interaction.reply({ content: 'There are no roles to shuffle. To add them use /roles create.'});
       return;
     }
 
     // Obtener opciones
     const quantity = interaction.options.getInteger('quantity') ?? 1;
 
-    interaction.reply({ content: 'Shuffling...', ephemeral: true});
+    interaction.reply({ content: 'Shuffling...'});
 
     // Ejecuto el mezclador
     try {
@@ -36,6 +36,7 @@ module.exports = {
       return null;
     }
     
-    interaction.editReply({ content: 'Finished!', ephemeral: true});
+    interaction.editReply({ content: 'Finished!'});
+    console.log('Shuffle Colours terminado!');
   }
 }

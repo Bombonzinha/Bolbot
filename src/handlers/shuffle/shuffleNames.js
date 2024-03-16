@@ -17,7 +17,7 @@ module.exports = {
     // Obtener opciones
     const quantity = interaction.options.getInteger('quantity') ?? 1;
 
-    interaction.reply({ content: 'Shuffling...', ephemeral: true});
+    interaction.reply({ content: 'Shuffling...'});
 
     // Ejecuto el mezclador
     try {
@@ -29,6 +29,7 @@ module.exports = {
       return null;
     }
     
-    interaction.editReply({ content: 'Finished!', ephemeral: true});
+    interaction.editReply({ content: 'Finished!'});
+    console.log('Shuffle Names terminado!');
   }
 }

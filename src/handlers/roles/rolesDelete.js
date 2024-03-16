@@ -17,13 +17,13 @@ module.exports = {
     const userRoles = await getRoles(roles, members);
     if (userRoles.length === 0) {
       console.log('No hay roles que eliminar');
-      interaction.reply({ content: 'There are no roles to delete.', ephemeral: true});
+      interaction.reply({ content: 'There are no roles to delete.'});
       return;
     }
-    interaction.reply({ content: 'Deleting roles...', ephemeral: true});
+    interaction.reply({ content: 'Deleting roles...'});
     // Borro los roles temporales
     await deleteRoles(userRoles);
-    interaction.editReply({ content: 'Done!', ephemeral: true});
+    interaction.editReply({ content: 'Done!'});
     console.log('Todos los roles borrados');
   }
 }

@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const commandHandler = require('../handlers/commandHandler');
 
 // OPCIONES
 // Opción integer
@@ -72,6 +73,6 @@ module.exports = {
     .addSubcommand(randomSubcommand('random', 'Generate Anything', 100))
   ,
   run: async ({ interaction }) => {
-    
+    await commandHandler.handleSlashCommand(interaction);
   }
 }
